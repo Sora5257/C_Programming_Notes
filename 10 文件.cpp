@@ -20,10 +20,39 @@
 
 文件操作：
 文件类型指针：FILE * ，文件操作中的唯一凭证
-fopen：打开文件，注意文件路径中\的写法，\\用于表示\字符本身
-fclose：关闭文件
-fwrite：向文件中写入内存数据
-fread：从文件中读取数据到内存
+
+fopen：打开文件。原型：FILE *fopen( const char *filename, const char *mode );
+第一个参数：该参数为字符串类型，表示要打开的文件的名称
+第二个参数：该参数为字符串类型，表示打开模式(只读、只写、更新、追加)
+fopen( )函数会为要打开的文件创建流并返回一个指向文件对象的FILE*型指针
+注意文件路径中\的写法，\\用于表示\字符本身
+
+fclose：关闭文件。原型：int fclose( FILE *stream );
+
+fscanf：从文件中读取数据。原型：int fscanf( FILE *stream, const char *format, ... );
+与scanf( )函数比起来，fscanf( )函数多了一个输入参数即FILE *stream；
+它表示从哪个文件读取数据。除此以外，它与scanf( )函数完全相同。
+
+fprintf：向文件中写入数据。原型：int fprintf( FILE *stream, const char *format, ... );
+比较与上述函数同理
+
+fgetc：从文件中读取一个字符并将其转为int型作为函数的返回值。原型：int fgetc( FILE *stream );
+fputc：向文件中写入一个字符。原型：int fputc( int ch, FILE *stream );
+fgets：该函数从文件指针stream指向的文件内读取字符串并保存到指针str所指向的内存空间中，
+直至已读size-1个字符或出现换行符或文件末尾时为止；当读取错误或者读到文件末尾EOF返回NULL。
+原型：char *fgets( char *str, int count, FILE *stream );
+该函数会读取最后的换行符’\n’。
+fputs：将str指向的字符串写入stream指向的文件流，成功返回非负数；反之EOF。原型：int fputs( const char *str, FILE *stream );
+该函数输入完成后不会增加额外的特殊字符(如换行符等)。
+
+按照二进制的形式对文件进行读写操作
+fwrite：向文件中写入内存数据。原型：int fwrite( const void *buffer, size_t size, size_t count, FILE *stream );
+fread：从文件中读取数据到内存。原型：size_t fread( void *buffer, size_t size, size_t count, FILE *stream );
+第一个参数：指向读写数据首地址的指针。
+第二个参数：要操作的单个数据的大小。例如，int型数据的大小就是sizeof(int)
+第三个参数：数据个数
+第四个参数：文件指针
+
 rewind：将位置指针移动到文件开头
 fseek：将位置指针移动到任意位置，即改变文件读写位置标记
 e.g.
@@ -180,3 +209,4 @@ int main()
 }
 
 #endif
+
