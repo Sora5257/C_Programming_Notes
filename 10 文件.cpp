@@ -54,6 +54,9 @@ fread：从文件中读取数据到内存。原型：size_t fread( void *buffer,
 第四个参数：文件指针
 
 rewind：将位置指针移动到文件开头
+feof：检测文件流是否到达了文件末尾（EOF）。原型：int feof(FILE *stream);
+如果文件流位于文件末尾，则该函数返回非零值。否则，返回零。
+
 fseek：将位置指针移动到任意位置，即改变文件读写位置标记
 e.g.
 fseek(fr,0,SEEK_SET);//以当前文件开头作为参照点，相对位置为0（即开头）
@@ -209,4 +212,5 @@ int main()
 }
 
 #endif
+
 
